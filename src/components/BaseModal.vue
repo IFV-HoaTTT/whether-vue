@@ -1,18 +1,23 @@
 <template>
-    <div
-        v-show="modalActive"
-        class="absolute w-full bg-black bg-opacity-30 h-screen
-        top-0 left-0 flex justify-center px-8">
+    <Transition name="modal-outer">
         <div
-        v-if="modalActive"
-        class="p-4 bg-white self-start mt-32 max-w-screen-md">
-            <slot />
-            <button class="text-white mt-8
+            v-show="modalActive"
+            class="absolute w-full bg-black bg-opacity-30 h-screen
+        top-0 left-0 flex justify-center px-8">
+
+            <Transition name="modal-inner">
+                <div
+                v-if="modalActive"
+                class="p-4 bg-white self-start mt-32 max-w-screen-md">
+                    <slot />
+                    <button class="text-white mt-8
             bg-weather-primary py-2 px-6" @click="$emit('close-modal')">
-                close
-            </button>
+                        close
+                    </button>
+                </div>
+            </Transition>
         </div>
-    </div>
+    </Transition>
 </template>
 
 <script setup>
@@ -29,6 +34,6 @@
     });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
